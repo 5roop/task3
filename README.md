@@ -12,9 +12,16 @@ torch.cuda.empty_cache()
 ```
 This improved the graphics card memory allocation errors, but `wandb`, `runs`, `output` and `cache_dir` directories still needed to be purged manually to prevent the disk from filling up.
 
+After succesful sweeps had ben run, the wandb website was inspected and the best performing hyperparameters were transcribed into the table below. The number of optimizer runs was capped at 50
+
 Found optimal parameters for the models are as follows:
 
-|Model name | model type | epochs | batch size | learning rate|
+|Model name | Model type | epochs | batch size | learning rate|
 |---|---|---|---|---|---|
-|classla/bcms-bertic | electra | 12 | 74 | 0.00001 |
- 
+|classla/bcms-bertic | electra | 12 | 74 | 1e-5 |
+|EMBEDDIA/sloberta|camembert | 14| 21| 1e-5|
+|roberta-base|roberta|4|69|3e-6||
+
+It had been noted that instantiating `EMBEDDIA/sloberta` as `bert` or `roberta` instead of `camembert` renders the loading of the model impossible. `xlm-roberta` models also wouldn't load, the reason is as of yet unknown. `roberta-base` on the other hand works as it should.
+
+
