@@ -59,7 +59,7 @@ It would seem `EMBEDDIA/sloberta` bested the other three candidates in the tests
 |Mann Whithey|0.00163|0.00108|
 |Student t-test |0.000101|3.95e-05|
 
-#### `Sloberta` vs `crosloengual-bert`:
+#### `Sloberta` vs `xlm-roberta-base`:
 | test | accuracy p-value | macro F1 p-value|
 | --- | --- | --- |
 |Wilcoxon|0.00781|0.00781|
