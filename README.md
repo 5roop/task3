@@ -34,20 +34,40 @@ With merged data finetuning was performed 11 times. Special care was taken to as
 ## Slovenian
 
 Model: xlm-roberta-base, xlmroberta, language='sl'
-Accuracies: [0.660238751147842, 0.709366391184573, 0.6721763085399449, 0.6795224977043158, 0.6808999081726355, 0.6974288337924701, 0.689623507805326, 0.689623507805326, 0.657483930211203, 0.6960514233241506, 0.6887052341597796]
-F1 scores: [0.6601559337129902, 0.7003895422308328, 0.6721738206544836, 0.6794249131212254, 0.6767424602390727, 0.6964607580962895, 0.688222518871888, 0.6885477968396336, 0.6572408613764471, 0.6921237931246541, 0.6873385012919897]
+Accuracies: [0.682277318640955, 0.6882460973370065, 0.6983471074380165, 0.67722681359045, 0.6988062442607897, 0.6712580348943985, 0.6854912764003673]
 
+F1 scores: [0.6717524932572289, 0.6862203507318707, 0.6965631457686351, 0.6769734278516519, 0.6937446894980026, 0.6708358662613981, 0.6828436062884093]
 
 
 Model: EMBEDDIA/sloberta, camembert, language='sl'
 Accuracies: [0.7704315886134068, 0.7777777777777778, 0.7736455463728191, 0.7764003673094583, 0.7800734618916437, 0.788337924701561, 0.7828282828282829]
+
 F1 scores: [0.7688172956081655, 0.7759634520286623, 0.7711152460019659, 0.7747038368823205, 0.7772081128841954, 0.7857142399814923, 0.7810369032120938]
 
 
 Model: EMBEDDIA/crosloengual-bert, bert, language='sl'
 Accuracies: [0.7626262626262627, 0.77089072543618, 0.7626262626262627, 0.758494031221304, 0.7594123048668503, 0.7543617998163453, 0.7630853994490359]
+
 F1 scores: [0.759113833199808, 0.7672336857525612, 0.7594826475863488, 0.7560500494020648, 0.7565539843532022, 0.7512137412224076, 0.7596067627228859]
 
+
+### Statistical analysis
+
+It would seem `EMBEDDIA/sloberta` bested the other three candidates in the tests, to confirm this, statistical tests were performed.
+
+#### `Sloberta` vs `crosloengual-bert`:
+| test | accuracy p-value | macro F1 p-value|
+| --- | --- | --- |
+|Wilcoxon|0.00781|0.00781|
+|Mann Whithey|0.00163|0.00108|
+|Student t-test |0.000101|3.95e-05|
+
+#### `Sloberta` vs `crosloengual-bert`:
+| test | accuracy p-value | macro F1 p-value|
+| --- | --- | --- |
+|Wilcoxon|0.00781|0.00781|
+|Mann Whithey|0.00108|0.00108|
+|Student t-test |9.46e-11|6.94e-11|
 
 ## Croatian
 
@@ -66,6 +86,24 @@ Model: EMBEDDIA/crosloengual-bert, bert, language='hr'
 Accuracies: [0.8047169811320755, 0.8042452830188679, 0.8033018867924528, 0.8014150943396227, 0.8080188679245283, 0.8075471698113208, 0.8084905660377358]
 F1 scores: [0.7952438186813187, 0.7953073309895347, 0.7943208602955085, 0.7919141395195504, 0.7985768907811182, 0.7977763251289849, 0.7990286728308582]
 
+### Statistical analysis
+
+#### `classla/bcms-bertic` vs `EMBEDDIA/crosloengual-bert`:
+| test | accuracy p-value | macro F1 p-value|
+| --- | --- | --- |
+|Wilcoxon|0.00781|0.00781|
+|Mann Whithey|0.00108|0.00108|
+|Student t-test |2.43e-10 |1.27e-10|
+
+#### `classla/bcms-bertic` vs `xlm-roberta-base` :
+| test | accuracy p-value | macro F1 p-value|
+| --- | --- | --- |
+|Wilcoxon|0.00781|0.00781|
+|Mann Whithey|0.00107|0.00108|
+|Student t-test |4.83e-11 | 5.61e-11 |
+
+
+
 
 # English
 Model: xlm-roberta-base, xlmroberta, language='en'
@@ -82,3 +120,22 @@ Model: roberta-base, roberta, language='en'
 Accuracies: [0.7927888792354474, 0.7962641181581234, 0.790616854908775, 0.7819287576020851, 0.7953953084274544, 0.792354474370113, 0.7910512597741095]
 F1 scores: [0.779903005739679, 0.7842603092706253, 0.7780383684410571, 0.7678973127920354, 0.7823783904211664, 0.7787919676803026, 0.7783526833497377]
 
+
+### Statistical analysis
+#### `roberta-base` vs `xlm-roberta-base`:
+
+| test | accuracy p-value | macro F1 p-value|
+| --- | --- | --- |
+|Wilcoxon|0.00781|0.00781|
+|Mann Whithey|0.00108|0.00108|
+|Student t-test | 1.35e-08 | 1.05e-07|
+
+#### `roberta-base` vs `xlm-roberta-large`:
+Notā: `roberta-base` has average accuracy 0.7915, while `xlm-roberta-large` has average accuracy of 0.7904. If macro F1 scores were to be compared, `roberta-base` actually has lower average than `xlm-roberta-large`: 0.77852 vs 0.77876 respectively. 
+| test | accuracy p-value | macro F1 p-value|
+| --- | --- | --- |
+|Wilcoxon|0.188|0.406|
+|Mann Whithey|0.375|0.649|
+|Student t-test | 0.681| 0.934|
+
+So can it be said that `xlm-roberta-large` is better than `roberta-base`? No, it can not, as the Wilcoxon p-value for this case reaches 0.656, Mann-Whithey p-value is 0.399, and of course the Student p-value stays the same.
