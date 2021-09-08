@@ -121,6 +121,12 @@ Accuracies: [0.7927888792354474, 0.7962641181581234, 0.790616854908775, 0.781928
 F1 scores: [0.779903005739679, 0.7842603092706253, 0.7780383684410571, 0.7678973127920354, 0.7823783904211664, 0.7787919676803026, 0.7783526833497377]
 
 
+Model: distilbert-base-uncased-finetuned-sst-2-english, distilbert, language='en'
+Accuracies: [0.7232841007819287, 0.7132927888792354, 0.7224152910512598, 0.7158992180712423, 0.7254561251086012, 0.7193744569939183, 0.7211120764552563]
+F1 scores: [0.7044579789396375, 0.6905553514298262, 0.6993976623782681, 0.6936789340938113, 0.7055884733689493, 0.6957070128339444, 0.7009300631374454]
+
+
+
 ### Statistical analysis
 #### `roberta-base` vs `xlm-roberta-base`:
 
@@ -139,3 +145,11 @@ Notā: `roberta-base` has average accuracy 0.7915, while `xlm-roberta-large` has
 |Student t-test | 0.681| 0.934|
 
 So can it be said that `xlm-roberta-large` is better than `roberta-base`? No, it can not, as the Wilcoxon p-value for this case reaches 0.656, Mann-Whithey p-value is 0.399, and of course the Student p-value stays the same.
+
+#### `roberta-base` vs `distilbert-base-uncased-finetuned-sst-2-english`:
+
+| test | accuracy p-value | macro F1 p-value|
+| --- | --- | --- |
+|Wilcoxon|0.00781|0.00781|
+|Mann Whithey|0.00108|0.00108|
+|Student t-test | 1.33e-12 	 | 3.03e-12|
