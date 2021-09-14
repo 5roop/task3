@@ -12,7 +12,7 @@ torch.cuda.empty_cache()
 ```
 This improved the graphics card memory allocation errors, but `wandb`, `runs`, `output` and `cache_dir` directories still needed to be purged manually to prevent the disk from filling up.
 
-After successful sweeps had been run, the wandb website was inspected and the best performing hyperparameters were transcribed into the table below. The number of optimizer runs was capped at 50
+After successful sweeps had been run, the `wandb` website was inspected and the best performing hyperparameters were transcribed into the table below. The number of optimizer runs was capped at 50.
 
 Found optimal parameters for the models are as follows:
 
@@ -33,6 +33,13 @@ With merged data finetuning was performed 11 times. Special care was taken to as
 
 ## Slovenian
 
+| model | average accuracy | average macro F1|
+|---|---|---|
+|sloberta-frenk-hate|0.7785|0.7764|
+|EMBEDDIA/crosloengual-bert |0.7616|0.7585|
+|xlm-roberta-base |0.686|0.6827|
+
+<!--- 
 Model: xlm-roberta-base, xlmroberta, language='sl'
 Accuracies: [0.682277318640955, 0.6882460973370065, 0.6983471074380165, 0.67722681359045, 0.6988062442607897, 0.6712580348943985, 0.6854912764003673]
 F1 scores: [0.6717524932572289, 0.6862203507318707, 0.6965631457686351, 0.6769734278516519, 0.6937446894980026, 0.6708358662613981, 0.6828436062884093]
@@ -46,7 +53,7 @@ F1 scores: [0.7688172956081655, 0.7759634520286623, 0.7711152460019659, 0.774703
 Model: EMBEDDIA/crosloengual-bert, bert, language='sl'
 Accuracies: [0.7626262626262627, 0.77089072543618, 0.7626262626262627, 0.758494031221304, 0.7594123048668503, 0.7543617998163453, 0.7630853994490359]
 F1 scores: [0.759113833199808, 0.7672336857525612, 0.7594826475863488, 0.7560500494020648, 0.7565539843532022, 0.7512137412224076, 0.7596067627228859]
-
+--->
 
 ### Statistical analysis
 
@@ -67,7 +74,7 @@ It would seem `EMBEDDIA/sloberta` bested the other three candidates in the tests
 |Student t-test |9.46e-11|6.94e-11|
 
 ## Croatian
-
+<!--- special completely ignored comment 
 Model: xlm-roberta-base, xlmroberta, language='hr'
 Accuracies: [0.7084905660377359, 0.7160377358490566, 0.7174528301886792, 0.7084905660377359, 0.7415094339622641, 0.7018867924528301, 0.7283018867924528]
 F1 scores: [0.6924610999064821, 0.7110693946004587, 0.7050340578489841, 0.6874543762971446, 0.7279074713025948, 0.6960410747456196, 0.714631848162606]
@@ -82,7 +89,15 @@ F1 scores: [0.8223890350362764, 0.8258849830857479, 0.8221409218995981, 0.821789
 Model: EMBEDDIA/crosloengual-bert, bert, language='hr'
 Accuracies: [0.8047169811320755, 0.8042452830188679, 0.8033018867924528, 0.8014150943396227, 0.8080188679245283, 0.8075471698113208, 0.8084905660377358]
 F1 scores: [0.7952438186813187, 0.7953073309895347, 0.7943208602955085, 0.7919141395195504, 0.7985768907811182, 0.7977763251289849, 0.7990286728308582]
+--> 
 
+
+
+| model | average accuracy | average macro F1|
+|---|---|---|
+|bcms-bertic-frenk-hate|0.8313|0.8219|
+|EMBEDDIA/crosloengual-bert |0.8054|0.796|
+|xlm-roberta-base |0.7175|0.7049|
 ### Statistical analysis
 
 #### `classla/bcms-bertic` vs `EMBEDDIA/crosloengual-bert`:
@@ -103,6 +118,14 @@ F1 scores: [0.7952438186813187, 0.7953073309895347, 0.7943208602955085, 0.791914
 
 
 # English
+
+| model | average accuracy | average macro F1|
+|---|---|---|
+|roberta-base-frenk-hate|0.7915|0.7785|
+|xlm-roberta-large |0.7904|0.77876|
+|xlm-roberta-base |0.7577|0.7402|
+
+<!---
 Model: xlm-roberta-base, xlmroberta, language='en'
 Accuracies: [0.7510860121633363, 0.7558644656820156, 0.764118158123371, 0.761511728931364, 0.7528236316246742, 0.7602085143353605, 0.7580364900086881]
 F1 scores: [0.725323441712606, 0.7375568511463544, 0.7483051180210519, 0.7440669841634362, 0.740430562037337, 0.7415839651189275, 0.7444385292878978]
@@ -117,7 +140,7 @@ Model: roberta-base, roberta, language='en'
 Accuracies: [0.7927888792354474, 0.7962641181581234, 0.790616854908775, 0.7819287576020851, 0.7953953084274544, 0.792354474370113, 0.7910512597741095]
 F1 scores: [0.779903005739679, 0.7842603092706253, 0.7780383684410571, 0.7678973127920354, 0.7823783904211664, 0.7787919676803026, 0.7783526833497377]
 
-
+--->
 ### Statistical analysis
 #### `roberta-base` vs `xlm-roberta-base`:
 
@@ -137,5 +160,37 @@ Notā: `roberta-base` has average accuracy 0.7915, while `xlm-roberta-large` has
 
 So can it be said that `xlm-roberta-large` is better than `roberta-base`? No, it can not, as the Wilcoxon p-value for this case reaches 0.656, Mann-Whithey p-value is 0.399, and of course the Student p-value stays the same.
 
+# Afterword
 
-I shall proceed with uploading the best performing models on ModelHub.
+
+I proceeded with uploading the best performing models on ModelHub. As it turned out, this can be done quite elegantly with drag-and-drop interface, but I plan to use `git` in the future as it is less fiddly and takes less time (you can only upload one file at a time with the drag and drop interface and large files block the pipeline.)
+
+It was also determined that I need to specify a few things in the `config.json`. By adding the field `"id2labels": {"0": "Acceptable", "1": "Offensive"}` I was able to get the labels to display properly when run from the webpage API, but the behaviour when run locally remained the same and only output 0 or 1. So far we are pleased with the outcome.
+
+
+It was also suggested to me that the default text can be set. I studied the rest of the published models and foun that some models prefix their model card with a field that looks like this:
+
+```markdown
+---
+language: "sl"
+
+tags:
+- text-classification
+- hate-speech
+
+widget:
+- text: "Silva, ti si grda in neprijazna."
+---
+```
+
+With this addition the models featured the insert text on the webpage API for testing the model.
+
+# Further research
+
+I compared the following models:
+* `xlm-roberta-large`
+* `xlm-roberta-base`
+* `roberta-base`
+* `distilroberta-base`
+
+I repeated the `wandb` optimization again, this time I was sure that the disk space will not be overwhelmed with the output models and that the model types are working, so the optimization was left running overnight and are therefore more reliable than in the first iteration of this task.
