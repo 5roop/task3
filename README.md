@@ -194,3 +194,47 @@ I compared the following models:
 * `distilroberta-base`
 
 I repeated the `wandb` optimization again, this time I was sure that the disk space will not be overwhelmed with the output models and that the model types are working, so the optimization was left running overnight and are therefore more reliable than in the first iteration of this task.
+
+It was again necessary to repeat the optimization a few times because of unforeseen errors, and it had been noticed than some models run for a significantly longer time than the others (e.g. one evaluation run takes 20 minutes or more). Perhaps this could be improved by requiring a fixed value for batch size.
+
+After numerous tries with careful monitoring the optimization was done. In preparation for future runs I encoded the optimal hyperparameters in a `dataclass` so that all the hyperparameters and the results are in one place, ready to be evaluated. Again an evaluation run of 7 runs was used and the metrics produced were recorded. They were analyzed in a more systematic and typo-resistant way to produce the following table:
+
+|model name| model type| accuracy | macro f1 score|
+| ---      | ---       | ---      | ---           |
+|roberta-base| roberta| 0.803 +/- 0.00323| 0.791 +/- 0.00372|
+|distilroberta-base| roberta| 0.798 +/- 0.00446| 0.786 +/- 0.00502|
+|xlm-roberta-base| xlmroberta| 0.727 +/- 0.0756| 0.652 +/- 0.173|
+|xlm-roberta-large| xlmroberta| 0.608 +/- 0.0| 0.378 +/- 5.55e-17|
+
+Furthermore, the same statistical tests were done to compare models pair-wise, comparing the best performing one based on accuracy with all the rest:
+
+#### `roberta-base` vs `distilroberta-base`:
+
+| test | accuracy p-value | macro F1 p-value|
+| --- | --- | --- |
+|Wilcoxon|0.0156|0.0390625|
+|Mann Whithney|0.0203|0.0367|
+|Student t-test | 3.894e-02 | 7.056e-02|
+
+
+
+#### `roberta-base` vs `xlm-roberta-base`:
+
+| test | accuracy p-value | macro F1 p-value|
+| --- | --- | --- |
+|Wilcoxon|0.00781|0.0078125|
+|Mann Whithney|0.00107|0.00107|
+|Student t-test | 3.062e-02 | 7.135e-02|
+
+
+
+#### `roberta-base` vs `xlm-roberta-large`:
+
+| test | accuracy p-value | macro F1 p-value|
+| --- | --- | --- |
+|Wilcoxon|0.00781|0.0078125|
+|Mann Whithney|0.000529|0.000529|
+|Student t-test | 6.386e-21 | 4.070e-24|
+
+
+
