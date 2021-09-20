@@ -236,5 +236,11 @@ Furthermore, the same statistical tests were done to compare models pair-wise, c
 |Mann Whithney|0.000529|0.000529|
 |Student t-test | 6.386e-21 | 4.070e-24|
 
+## Concluding remarks
+
+Again it was demonstrated that `roberta-base` outperforms other checkpoints. It is interesting to note, however, that `distilroberta-base` is not much worse off, while also reducing the model file size for a factor of 1/3.
 
 
+`xlm-roberta-large` proved again difficult to handle to say the least. It needed long amounts of time when searching for optimal hyperparameters and when fine-tuning as well, in both cases constant supervision was necessary to make sure that the process is still running as it should.
+
+A framework has been written that will probably be used in all future cases of such tasks, as of yet it is working, but not to its full potential. In the future most of what is now handled by helper functions could be included as dataclass methods which could make the workflow more elegant, albeit probably not faster.
