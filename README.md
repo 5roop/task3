@@ -244,3 +244,23 @@ Again it was demonstrated that `roberta-base` outperforms other checkpoints. It 
 `xlm-roberta-large` proved again difficult to handle to say the least. It needed long amounts of time when searching for optimal hyperparameters and when fine-tuning as well, in both cases constant supervision was necessary to make sure that the process is still running as it should.
 
 A framework has been written that will probably be used in all future cases of such tasks, as of yet it is working, but not to its full potential. In the future most of what is now handled by helper functions could be included as dataclass methods which could make the workflow more elegant, albeit probably not faster.
+
+
+## Addition of `fastext` comparison to model cards
+
+Since the results, obtained in Task 1, were not directly comparable due to the fact that only `lgbt` subset had been used, the training and evaluation was performed anew. Hyperparameters were fiddled, but there was hardly any effect on the result. It was also discovered that the performance was repeatable, so repeated runs produced exactly the same statistics.
+
+### Language: sl
+Accuracy:  0.669
+F1 score: 0.659
+
+### Language: hr
+Accuracy:  0.709
+F1 score: 0.691
+
+### Language: en
+Accuracy:  0.712
+F1 score: 0.686
+
+
+To optimize `fasttext` hyperparameters it seems we would need to provide a validation dataset, which we do not have. I used the test file in its stead, hoping that I'd be able to extract the hyperparameters afterwards. So far the optimization has not yet terminated.
