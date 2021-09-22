@@ -293,4 +293,5 @@ F1 score: 0.766
 Accuracy:  0.732
 F1 score: 0.712
 
-~~I shall amend the model cards with these improved statistics.~~ The model cards have been amended with the latest data.
+~~I shall amend the model cards with these improved statistics.~~ 
+The model cards have been amended with the latest data.
