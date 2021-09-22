@@ -251,47 +251,47 @@ A framework has been written that will probably be used in all future cases of s
 Since the results, obtained in Task 1, were not directly comparable due to the fact that only `lgbt` subset had been used, the training and evaluation was performed anew. Hyperparameters were fiddled, but there was hardly any effect on the result. It was also discovered that the performance was repeatable, so repeated runs produced exactly the same statistics. This renders any attempts at comparing the distributions with statistical tools useless, but since the variances of the samples are small anyway, we can get away with only comparing the average metrics with the `fasttext` metrics.
 
 ### Language: sl
-Accuracy:  0.669
-F1 score: 0.659
+* Accuracy:  0.669
+* F1 score: 0.659
 
 ### Language: hr
-Accuracy:  0.709
-F1 score: 0.691
+* Accuracy:  0.709
+* F1 score: 0.691
 
 ### Language: en
-Accuracy:  0.712
-F1 score: 0.686
+* Accuracy:  0.712
+* F1 score: 0.686
 
 
 To optimize `fasttext` hyperparameters it seems we would need to provide a validation dataset, which we do not have. I used the test file in its stead, hoping that I'd be able to extract the hyperparameters afterwards. After reading through the console output, however, it seems that `fasttext` already does this for us; first the output took a long time to try and optimize parameters, and then it trains again with the best setup. After this pipeline runs for all the languages, the results look a tad better:
 
 
 ### Language: sl
-Accuracy:  0.717
-F1 score: 0.706
+* Accuracy:  0.717
+* F1 score: 0.706
 
 ### Language: hr
-Accuracy:  0.775
-F1 score: 0.757
+* Accuracy:  0.775
+* F1 score: 0.757
 
 ### Language: en
-Accuracy:  0.731
-F1 score: 0.715
+* Accuracy:  0.731
+* F1 score: 0.715
 
 The optimization is based on time, not number of runs. In my first run I let it run for 10 minutes. Not suprisingly if this number is increased, the metrics increase, but with diminishing returns. E.g., after doubling the optimization time, I only get about half a percentage point increase.
 
 ### Language: sl
-Accuracy:  0.721
-F1 score: 0.711
+* Accuracy:  0.721
+* F1 score: 0.711
 
 ### Language: hr
-Accuracy:  0.781
-F1 score: 0.766
+* Accuracy:  0.781
+* F1 score: 0.766
 
 
 ### Language: en
-Accuracy:  0.732
-F1 score: 0.712
+* Accuracy:  0.732
+* F1 score: 0.712
 
 ~~I shall amend the model cards with these improved statistics.~~ 
 The model cards have been amended with the latest data.
