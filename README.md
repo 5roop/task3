@@ -295,3 +295,57 @@ The optimization is based on time, not number of runs. In my first run I let it 
 
 ~~I shall amend the model cards with these improved statistics.~~ 
 The model cards have been amended with the latest data.
+
+# Adendum 2021-09-27
+
+In accordance with the workflow corrections, agreed upon in a skype meeting, the `Fasttext` results need a proper validation dataset. I prepared 3 validation files:
+
+1. strategy: unshuffled train file was split into head (90%) and tail (10%), head was used for training, tail was used as validation
+2. strategy: unshuffled train file was split into tail (90%) and head (10%), tail was used for training, head was used as validation
+3. strategy: train file was shuffled, random 90% was used for training and the rest for testing
+
+The code for the dev data preparation process is available in the codebase.
+
+As before the optimization was being performed for 10 minutes. The first results are shown below.
+|strategy|language|accuracy|macro F1 score |
+|---|---|---|---|
+|strategy=1|sl|0.705|0.695|
+|strategy=1|hr|0.773|0.759|
+|strategy=1|en|0.725|0.709|
+|strategy=2|sl|0.706|0.699|
+|strategy=2|hr|0.772|0.757|
+|strategy=2|en|0.73|0.713|
+|strategy=3|sl|0.566|0.385|
+|strategy=3|hr|0.597|0.424|
+|strategy=3|en|0.603|0.382|
+
+As mentioned by Nikola in the skype meeting, it is beneficial if the train, dev and test data are contiguous and not randomly shuffled. The last strategy where the training and dev instances were shuffled proved to be the worst.
+
+The analysis was repeated to assess the statistical fluctuations of the results. As can be seen below, there are differences, but not high enough that they would warrant further statistical analysis.
+
+Second run:
+|strategy|language|accuracy|macro F1 score |
+|---|---|---|---|
+|strategy=1|sl|0.709|0.701|
+|strategy=1|hr|0.777|0.761|
+|strategy=1|en|0.721|0.702|
+|strategy=2|sl|0.713|0.706|
+|strategy=2|hr|0.77|0.75|
+|strategy=2|en|0.728|0.709|
+|strategy=3|sl|0.566|0.385|
+|strategy=3|hr|0.597|0.424|
+|strategy=3|en|0.603|0.382|
+
+
+Third run:
+|strategy|language|accuracy|macro F1 score |
+|---|---|---|---|
+|strategy=1|sl|0.71|0.7|
+|strategy=1|hr|0.761|0.744|
+|strategy=1|en|0.723|0.703|
+|strategy=2|sl|0.711|0.704|
+|strategy=2|hr|0.771|0.754|
+|strategy=2|en|0.722|0.703|
+|strategy=3|sl|0.566|0.385|
+|strategy=3|hr|0.597|0.424|
+|strategy=3|en|0.603|0.382|
