@@ -306,7 +306,7 @@ In accordance with the workflow corrections, agreed upon in a skype meeting, the
 
 The code for the dev data preparation process is available in the codebase.
 
-As before the optimization was being performed for 10 minutes. The first results are shown below.
+Again the optimization was being performed for 10 minutes. The first results are shown below.
 |strategy|language|accuracy|macro F1 score |
 |---|---|---|---|
 |strategy=1|sl|0.705|0.695|
@@ -349,3 +349,12 @@ Third run:
 |strategy=3|sl|0.566|0.385|
 |strategy=3|hr|0.597|0.424|
 |strategy=3|en|0.603|0.382|
+
+As the third strategy consistently proved worse it was dropped from further comparisons. The first and second strategies are performing equally well and therefore these results were averaged and reported in the model cards as a faithful metric of `fasttext`'s performance with proper hygenic optimization techniques.
+
+|language|accuracy | macro F1 score|
+|---|---|---|
+|hr|0.771 +/- 0.00485|0.754 +/- 0.00576|
+|sl|0.709 +/- 0.00277|0.701 +/- 0.00353|
+|en|0.725 +/- 0.00324|0.707 +/- 0.00407|
+
