@@ -358,3 +358,12 @@ As the third strategy consistently proved worse it was dropped from further comp
 |sl|0.709 +/- 0.00277|0.701 +/- 0.00353|
 |en|0.725 +/- 0.00324|0.707 +/- 0.00407|
 
+## Bugfix
+
+It had been seen that the third strategy performed way worse than its counterparts. After finding a bug in the code that caused this problem we see that the performances level out:
+
+|language|accuracy | macro F1 score|
+|---|---|---|
+|strategy=3|sl|0.708|0.696|
+|strategy=3|hr|0.765|0.749|
+|strategy=3|en|0.718|0.702|
